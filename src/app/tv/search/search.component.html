@@ -1,0 +1,26 @@
+<!--nav.menu>ul>li*5>a>lorem*2 + TAB-->
+
+<!--<input #inputRef type="search" class="input">    #inputRef - referancja do danego obiektu w DOM -->
+<!--<button class="button is-primary" (click)="search(inputRef.value)">search</button>-->
+
+<form>
+  <input name="search" #queryRef="ngModel" type="search" class="input" [(ngModel)]="query" required minlength="2">
+  <!-- *ngIf, ngFor, ngSwitchCase dyrektywa strukturalna; skrócony zapis template-->
+  <p class="help is-danger" *ngIf="queryRef.errors?.minlength">
+    Too short
+  </p>
+
+  <button type="button" [disabled]="queryRef.invalid" class="button is-primary" (click)="search(query)">search</button>
+</form>
+
+<h2 class="subtitle">Results:</h2>
+
+<div class="columns is-multiline">
+  <div class="column is-4" *ngFor="let show of shows">
+    <st-poster [show]="show"></st-poster>
+  </div>
+</div>
+
+<pre>{{queryRef.invalid | json}}</pre>
+<pre>{{queryRef.errors | json}}</pre>
+<pre>{{queryRef.errors?.minlength | json}}</pre>
