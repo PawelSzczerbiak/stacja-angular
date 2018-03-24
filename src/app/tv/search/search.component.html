@@ -1,4 +1,4 @@
-<!--nav.menu>ul>li*5>a>lorem*2 + TAB-->
+<!--nav.menu>ul>li*5>a>lorem*2-->
 
 <!--<input #inputRef type="search" class="input">    #inputRef - referancja do danego obiektu w DOM -->
 <!--<button class="button is-primary" (click)="search(inputRef.value)">search</button>-->
@@ -12,15 +12,18 @@
 
   <button type="button" [disabled]="queryRef.invalid" class="button is-primary" (click)="search(query)">search</button>
 </form>
+<!-- Filtr zamieniający obiekt/tablicę na string JSON -->
+<pre>{{queryRef.invalid | json}}</pre>
+<pre>{{queryRef.errors | json}}</pre>
+<pre>{{queryRef.errors?.minlength | json}}</pre>
 
-<h2 class="subtitle">Results:</h2>
+<h2 class="subtitle">Results: {{timer$ | async}}</h2>
 
 <div class="columns is-multiline">
-  <div class="column is-4" *ngFor="let show of shows">
+  <div class="column is-4" *ngFor="let show of shows$ | async">
     <st-poster [show]="show"></st-poster>
   </div>
 </div>
 
-<pre>{{queryRef.invalid | json}}</pre>
-<pre>{{queryRef.errors | json}}</pre>
-<pre>{{queryRef.errors?.minlength | json}}</pre>
+<pre>{{shows$ | json}}</pre>
+

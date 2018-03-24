@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'Hello';
 
   handleClick(event: MouseEvent) {
-    this.title = this.title + event.clientX;
+    this.title = '' + event.clientX;
   }
 
   handleTimePassed(value) {
